@@ -122,7 +122,11 @@ function useStageStateMirror() {
     if (!window.__codaDB) return;
     const ref = window.__codaDB.ref("coda/stage");
     const handler = (snap) => {
-      const v = snap.val();
+      const raw = snap.val();
+      let v = raw;
+      if (raw && typeof raw === "object" && typeof raw.json === "string") {
+        try { v = JSON.parse(raw.json); } catch(_) { v = null; }
+      }
       if (v) {
         const merged = { ...DEFAULT, ...v };
         setS(merged);
@@ -137,7 +141,11 @@ function useStageStateMirror() {
     if (!window.__codaDB) return;
     const ref = window.__codaDB.ref("coda/history");
     const handler = (snap) => {
-      const v = snap.val();
+      const raw = snap.val();
+      let v = raw;
+      if (raw && typeof raw === "object" && typeof raw.json === "string") {
+        try { v = JSON.parse(raw.json); } catch(_) { v = null; }
+      }
       const len = Array.isArray(v) ? v.length : 0;
       setS(p => p.totalSongs !== len ? { ...p, totalSongs: len } : p);
     };
