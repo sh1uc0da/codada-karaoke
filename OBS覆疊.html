@@ -244,8 +244,7 @@ function App() {
 
   return (
     <div style={{
-      position: "fixed", top: 24, left: 24,
-      width: 440,
+      position: "fixed", top: 24, left: 24, right: 24, bottom: 24,
       zIndex: 1,
     }}>
       <div style={{
@@ -391,9 +390,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App/>);
 
 // Show bg by default when not in OBS, so the user can see it during preview
-// (skip when ?bg=0 OR ?chroma=... is set)
-if (!/[?&]bg=0\b/.test(window.location.search) && !/[?&]chroma=/.test(window.location.search)) {
-  document.body.classList.add("with-bg");
+// (skip when ?bg=0 OR ?chroma=... is set, and skip if body already has inline background)
+if (!/[?&]bg=0\b/.test(window.location.search) && !/[?&]chroma=/.test(window.location.search) && !document.body.style.background) {
+  // Don't auto-add with-bg — let the inline #8a49e3 from <style> show through
 }
 </script>
 </body>
