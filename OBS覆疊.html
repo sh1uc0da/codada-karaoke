@@ -89,9 +89,9 @@ const { useState, useEffect, useRef } = React;
 const STAGES = [
   { min: 0,   max: 20,         title: "街頭藝人" },
   { min: 21,  max: 50,         title: "駐唱歌手" },
-  { min: 51,  max: 100,        title: "音樂人" },
-  { min: 101, max: 150,        title: "知名音樂人" },
-  { min: 151, max: Infinity,   title: "宇宙歌姬" },
+  { min: 51,  max: 70,         title: "音樂人" },
+  { min: 71,  max: 100,        title: "知名音樂人" },
+  { min: 101, max: Infinity,   title: "宇宙歌姬" },
 ];
 const getStage = (n) => STAGES.find(s => n >= s.min && n <= s.max) || STAGES[STAGES.length-1];
 
